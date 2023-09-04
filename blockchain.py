@@ -37,6 +37,16 @@ class Blockchain:
     def get_block_before(self)-> dict:
 
         return self.chain[-1]
+    
+
+
+
+
+
+
+    def mempool(self):
+
+        return self.current_transactions
 
     
 
@@ -165,7 +175,7 @@ class Blockchain:
             previous_proof = previous_block["proof"]
             index, data, proof = block["index"], block["data"], block["proof"]
             hash_operation = libhash.sha256(
-                self._to_digest(
+                self.solve_mathematical_puzzle(
                     new_proof=proof,
                     previous_proof=previous_proof,
                     index=index,
